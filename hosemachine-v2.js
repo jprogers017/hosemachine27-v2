@@ -143,7 +143,7 @@ client.on('message', function(message) {
       .setColor("#7fc0ff")
       .setThumbnail(botIcon)
       .addField("Commands", "serverinfo\ncowjoke\ndadjoke\nknockknock\nvine\nmeme", true)
-      .addField("Code, if u want it lol", "https://tinyurl.com/hosemachine27-js-v2", true)
+      .addField("Code, if u want it lol", "https://goo.gl/cc1zRD", true)
       .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
     message.channel.send(botEmbed);
