@@ -555,11 +555,4 @@ client.on('message', function(message) {
       return console.log(`${message.member.displayName} asked the 8ball ${eightBallQuestion}`);
     }
   }
-
-  //leave logs
-  client.on('guildMemberRemove', member => {
-    return message.guild.channels.get('431647588262084608').send(`<@${member.user.id}> has left the server, lame`);
-    return console.log(`<@${member.user.id}> has left the server, lame`);
-  });
-
 });
