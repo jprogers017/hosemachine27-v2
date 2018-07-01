@@ -8,7 +8,7 @@ module.exports.run = async (client, message, args) => {
     if (!logsChannel) {
         let botIcon = client.user.displayAvatarURL;
         let helpEmbed = new Discord.RichEmbed()
-            .setTitle("hosemachine (27) help info :)")
+            .setTitle("machinehose (72) help info")
             .setDescription("use the :/ prefix")
             .setColor("#7fc0ff")
             .setThumbnail(botIcon)
@@ -21,7 +21,7 @@ module.exports.run = async (client, message, args) => {
     } else {
         let botIcon = client.user.displayAvatarURL;
         let helpEmbed = new Discord.RichEmbed()
-            .setTitle("hosemachine (27) help info :)")
+            .setTitle("machinehose (72) help info")
             .setDescription("use the :/ prefix")
             .setColor("#7fc0ff")
             .setThumbnail(botIcon)

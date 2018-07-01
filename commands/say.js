@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
         message.delete().catch();
 
         message.channel.send(botMessage);
-        return logsChannel.send(`**${message.member.displayName}** told hosemachine (27) to say *${botMessage}*`);
+        return logsChannel.send(`**${message.member.displayName}** told machinehose (72) to say *${botMessage}*`);
     }
 }
 
