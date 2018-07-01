@@ -1,4 +1,4 @@
-settings.*
+config.*
 node_modules/
 #install:
 #npm install -g nodemon
