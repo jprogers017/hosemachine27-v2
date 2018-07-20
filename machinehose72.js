@@ -30,6 +30,7 @@ client.on('message', function (message) {
   if (mess.startsWith(prefix + "hello")) {
     if (!logsChannel) {
       message.channel.send("Hello!!!");
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} said hello!!!`);
     } else {
       message.channel.send("Hello!!!");
       return logsChannel.send(`**${message.member.displayName}** said hello!!!`);
@@ -40,6 +41,7 @@ client.on('message', function (message) {
   if (mess.includes("heck") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("watch ur FUCKIN language");
+      return console.log(`could not find the logs channel, MESSAGE:\ntold ${message.member.displayName} to watch their FUCKIN language: heck`);
     } else {
       message.channel.send("watch ur FUCKIN language");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: heck`);
@@ -49,6 +51,7 @@ client.on('message', function (message) {
   if (mess.includes("frick") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("watch ur FUCKIN language");
+      return console.log(`could not find the logs channel, MESSAGE:\ntold ${message.member.displayName} to watch their FUCKIN language: frick`);
     } else {
       message.channel.send("watch ur FUCKIN language");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: frick`);
@@ -58,6 +61,7 @@ client.on('message', function (message) {
   if (mess.includes("darn") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("watch ur FUCKIN language");
+      return console.log(`could not find the logs channel, MESSAGE:\ntold ${message.member.displayName} to watch their FUCKIN language: darn`);
     } else {
       message.channel.send("watch ur FUCKIN language");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: darn`);
@@ -67,6 +71,7 @@ client.on('message', function (message) {
   if (mess.includes("binch") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("watch ur FUCKIN language");
+      return console.log(`could not find the logs channel, MESSAGE:\ntold ${message.member.displayName} to watch their FUCKIN language: binch`);
     } else {
       message.channel.send("watch ur FUCKIN language");
       return logsChannel.send(`told **${message.member.displayName}** to watch their FUCKIN language: binch`);
@@ -76,15 +81,7 @@ client.on('message', function (message) {
   if (mess.includes("yeehaw") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
-    } else {
-      message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
-      return logsChannel.send(`**${message.member.displayName}** said yeehaw and got YAWHEE :cowboy: back`);
-    }
-  }
-
-  if (mess.includes("yee haw") && message.member.id != client.user.id) {
-    if (!logsChannel) {
-      message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} said yeehaw and got YAWHEE cowboy emoji back`);
     } else {
       message.channel.send("YAWHEE :cowboy: :cowboy: :cowboy:");
       return logsChannel.send(`**${message.member.displayName}** said yeehaw and got YAWHEE :cowboy: back`);
@@ -94,6 +91,7 @@ client.on('message', function (message) {
   if (mess.includes("whomst") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("the FUCK");
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName}... whoms't the FUCK`);
     } else {
       message.channel.send("the FUCK");
       return logsChannel.send(`**${message.member.displayName}**... whoms't the FUCK`);
@@ -104,6 +102,7 @@ client.on('message', function (message) {
   if (mess.includes("gay") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.react('🏳️‍🌈');
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a gay pride flag emoji reaction`);
     } else {
       message.react('🏳️‍🌈');
       return logsChannel.send(`**${message.member.displayName}** got a :gay_pride_flag:`);
@@ -113,33 +112,36 @@ client.on('message', function (message) {
   if (mess.includes("eyes emoji") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.react("👀");
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got some eyes emoji reaction`);
     } else {
       message.react("👀");
       return logsChannel.send(`**${message.member.displayName}** got :eyes:`);
     }
   }
 
-  //say
+
+  //say 
   if (mess.startsWith(prefix + "say")) {
     if (!logsChannel) {
-      if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+      if (!message.member.hasPermissions("MANAGE_MESSAGES")) {
         message.reply("no perms 4 that, fucker");
-        return logsChannel.send(`**${message.member.displayName}** tried to say ${botMessage} but doesnt have perms`);
+        return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} tried to get machinehose (72) to  say ${botMessage} but doesnt have perms`);
       }
       let botMessage = args.join(" ");
       message.delete().catch();
 
       message.channel.send(botMessage);
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} told machinehose (72) to say ${botMessage}`);
     } else {
-      if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+      if (!message.member.hasPermissions("MANAGE_MESSAGES")) {
         message.reply("no perms 4 that, fucker");
-        return logsChannel.send(`**${message.member.displayName}** tried to say ${botMessage} but doesnt have perms`);
+        return logsChannel.send(`**${message.member.displayName}** tried to get machinehose (72) to say ${botMessage} but doesnt have perms`);
       }
       let botMessage = args.join(" ");
       message.delete().catch();
 
       message.channel.send(botMessage);
-      return logsChannel.send(`**${message.member.displayName}** told hosemachine (27) to say *${botMessage}*`);
+      return logsChannel.send(`**${message.member.displayName}** told machinehose (72) to say *${botMessage}*`);
     }
   }
 
@@ -149,26 +151,27 @@ client.on('message', function (message) {
     if (!logsChannel) {
       let botIcon = client.user.displayAvatarURL;
       let aHelpEmbed = new Discord.RichEmbed()
-        .setTitle("hosemachine (27) help info :)")
+        .setTitle("machinehose (72) help info :)")
         .setDescription("use the ;) prefix")
         .setColor("#7fc0ff")
         .setThumbnail(botIcon)
-        .addField("Commands", "serverinfo\ncowjoke\ndadjoke\nknockknock\nvine\nmeme", true)
+        .addField("Commands", "serverinfo\ncowjoke\ndadjoke\nknockknock\nvine\nmeme\n8ball <ur question>\nand if u have admin perms:\nsay <what u want the bot to send back>", true)
         .addField("Other Features", "swear filter!!!\nsometimes words r actually emojis\nsometimes bot will yell things at u", true)
-        .addField("Code, if u want it lol", "https://goo.gl/rua7h6")
+        .addField("Code, if u want it lol", "https://goo.gl/vgqR24")
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
       message.channel.send(aHelpEmbed);
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} needed help`);
     } else {
       let botIcon = client.user.displayAvatarURL;
       let aHelpEmbed = new Discord.RichEmbed()
-        .setTitle("hosemachine (27) help info :)")
+        .setTitle("machinehose (72) help info :)")
         .setDescription("use the ;) prefix")
         .setColor("#7fc0ff")
         .setThumbnail(botIcon)
-        .addField("Commands", "serverinfo\ncowjoke\ndadjoke\nknockknock\nvine\nmeme", true)
+        .addField("Commands", "serverinfo\ncowjoke\ndadjoke\nknockknock\nvine\nmeme\n8ball <ur question>\nand if u have admin perms:\nsay <what u want the bot to send back>", true)
         .addField("Other Features", "swear filter!!!\nsometimes words r actually emojis\nsometimes bot will yell things at u", true)
-        .addField("Code, if u want it lol", "https://goo.gl/rua7h6")
+        .addField("Code, if u want it lol", "https://goo.gl/vgqR24")
         .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
       message.channel.send(aHelpEmbed);
@@ -185,11 +188,13 @@ client.on('message', function (message) {
         .setColor("#7fc0ff")
         .setThumbnail(serverIcon)
         .addField("Server Name", message.guild.name, true)
+        .addField("Server Owner", message.guild.owner, true)
         .addField("Total Members", message.guild.memberCount, true)
         .addField("Created On", message.guild.createdAt, true)
         .addField("You joined", message.member.joinedAt, true);
 
       message.channel.send(serverEmbed);
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} asked for server info`);
     } else {
       let serverIcon = message.guild.iconURL;
       let serverEmbed = new Discord.RichEmbed()
@@ -197,6 +202,7 @@ client.on('message', function (message) {
         .setColor("#7fc0ff")
         .setThumbnail(serverIcon)
         .addField("Server Name", message.guild.name, true)
+        .addField("Server Owner", message.guild.owner, true)
         .addField("Total Members", message.guild.memberCount, true)
         .addField("Created On", message.guild.createdAt, true)
         .addField("You joined", message.member.joinedAt, true);
@@ -210,9 +216,10 @@ client.on('message', function (message) {
   //ping
   if (mess.startsWith(prefix + "ping")) {
     if (!logsChannel) {
-      message.channel.send(((new Date().getTime() - message.createdTimestamp) * -1) + " ms");
+      message.channel.send(`hi, it took me ${((new Date().getTime() - message.createdTimestamp) * -1)}ms to respond to u`);
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} used ping, it took ${((new Date().getTime() - message.createdTimestamp) * -1)}  ms to respond`);
     } else {
-      message.channel.send(((new Date().getTime() - message.createdTimestamp) * -1) + " ms");
+      message.channel.send(`hi, it took me ${((new Date().getTime() - message.createdTimestamp) * -1)}ms to respond to u`);
       return logsChannel.send(`**${message.member.displayName}** used ping, it took ${((new Date().getTime() - message.createdTimestamp) * -1)}  ms to respond`);
     }
   }
@@ -247,12 +254,13 @@ client.on('message', function (message) {
     if (!logsChannel) {
       if (!args[1]) {
         message.reply("more than a one worded question");
-        return logsChannel.send(`**${message.member.displayName}** tried to ask a question??? i think???`);
+        return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} tried to ask a question??? i think???`);
       } else {
         let eightBallResult = Math.floor((Math.random() * eightBallReplies.length));
         let eightBallQuestion = args.slice(1).join(" ");
 
         message.reply(eightBallReplies[eightBallResult]);
+        return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} asked the 8ball ${eightBallQuestion}`);
       }
     } else {
       if (!args[1]) {
@@ -347,6 +355,7 @@ client.on('message', function (message) {
     if (!logsChannel) {
       var rand = cowJokes[Math.floor(Math.random() * cowJokes.length)];
       message.channel.send(rand);
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} asked for a cow joke, LMAO NICE`);
     } else {
       var rand = cowJokes[Math.floor(Math.random() * cowJokes.length)];
       message.channel.send(rand);
@@ -402,6 +411,7 @@ client.on('message', function (message) {
     if (!logsChannel) {
       var rand = dadJokes[Math.floor(Math.random() * dadJokes.length)];
       message.channel.send(rand);
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} asked for a dad joke, LMAO NICE`);
     } else {
       var rand = dadJokes[Math.floor(Math.random() * dadJokes.length)];
       message.channel.send(rand);
@@ -444,6 +454,7 @@ client.on('message', function (message) {
     if (!logsChannel) {
       var rand = knockKnockJokes[Math.floor(Math.random() * knockKnockJokes.length)];
       message.channel.send(rand);
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} asked for a knock knock joke, LMAO NICE`);
     } else {
       var rand = knockKnockJokes[Math.floor(Math.random() * knockKnockJokes.length)];
       message.channel.send(rand);
@@ -454,6 +465,7 @@ client.on('message', function (message) {
   if (mess.includes("knock knock") && message.member.id != client.user.id) {
     if (!logsChannel) {
       message.channel.send("whos there?");
+      return console.log(`could not find the logs channel, MESSAGE:\nreplied to ${message.member.displayName}: whos there?`);
     } else {
       message.channel.send("whos there?");
       return logsChannel.send(`replied to **${message.member.displayName}**: whos there?`);
@@ -648,6 +660,7 @@ client.on('message', function (message) {
     if (!logsChannel) {
       var rand = vine[Math.floor(Math.random() * vine.length)];
       message.channel.send(rand);
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} asked for a vine,,,,WHAT A SMART COOKIE`);
     } else {
       var rand = vine[Math.floor(Math.random() * vine.length)];
       message.channel.send(rand);
@@ -685,6 +698,7 @@ client.on('message', function (message) {
     if (!logsChannel) {
       var rand = memes[Math.floor(Math.random() * memes.length)];
       message.channel.send(rand);
+      return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} asked for a meme, oh no`);
     } else {
       var rand = memes[Math.floor(Math.random() * memes.length)];
       message.channel.send(rand);
@@ -746,6 +760,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy1]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -760,6 +775,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy2]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -774,6 +790,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy3]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -788,6 +805,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy4]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -802,6 +820,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy5]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -816,6 +835,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy6]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -830,6 +850,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy7]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -844,6 +865,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy8]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -858,6 +880,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy9]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -872,6 +895,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy10]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -886,6 +910,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy11]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -900,6 +925,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy12]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -914,6 +940,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy13]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -928,6 +955,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy14]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -942,6 +970,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy15]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -956,6 +985,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy16]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -970,6 +1000,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy17]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -984,6 +1015,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy18]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -998,6 +1030,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy19]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1012,6 +1045,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy20]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1026,6 +1060,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy21]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1040,6 +1075,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy22]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1054,6 +1090,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy23]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1068,6 +1105,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy24]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1082,6 +1120,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy25]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1096,6 +1135,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy26]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1110,6 +1150,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy27]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1124,6 +1165,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy28]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1138,6 +1180,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy29]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1152,6 +1195,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy30]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1166,6 +1210,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy31]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1180,6 +1225,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy32]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1194,6 +1240,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy33]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1208,6 +1255,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy34]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1222,6 +1270,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy35]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1236,6 +1285,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy36]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1250,6 +1300,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy37]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1264,6 +1315,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy38]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1278,6 +1330,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy39]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
@@ -1292,6 +1345,7 @@ client.on('message', function (message) {
           message.channel.send({
             files: [puppy40]
           });
+          return console.log(`could not find the logs channel, MESSAGE:\n${message.member.displayName} got a :dog:!!!`);
         } else {
           message.channel.send("so...i hear that you wanted to see a puppy?");
           message.channel.send({
