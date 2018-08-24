@@ -17,10 +17,13 @@ client.login(discordToken);
 //on message in console and activity
 client.on('ready', function () {
   console.log(`${client.user.username} is online in ${client.guilds.size} server(s)`);
-  client.user.setActivity("type ;)cowjoke, i dare u");
+  client.user.setActivity("type :)cowjoke, i dare u");
 });
 
 client.on('message', function (message) {
+  if (message.author.bot) return;
+  if (message.channel.type === "dm") return message.channel.send("did u want an invite link? <https://discordapp.com/api/oauth2/authorize?client_id=463086178757771264&permissions=0&scope=bot>");
+
   const mess = message.content.toLowerCase();
   let messageArray = message.content.split(" ");
   let args = messageArray.slice(1);
@@ -152,7 +155,7 @@ client.on('message', function (message) {
       let botIcon = client.user.displayAvatarURL;
       let aHelpEmbed = new Discord.RichEmbed()
         .setTitle("machinehose (72) help info :)")
-        .setDescription("use the ;) prefix")
+        .setDescription("use the :) prefix")
         .setColor("#7fc0ff")
         .setThumbnail(botIcon)
         .addField("Commands", "serverinfo\ncowjoke\ndadjoke\nknockknock\nvine\nmeme\n8ball <ur question>\nand if u have admin perms:\nsay <what u want the bot to send back>", true)
@@ -166,7 +169,7 @@ client.on('message', function (message) {
       let botIcon = client.user.displayAvatarURL;
       let aHelpEmbed = new Discord.RichEmbed()
         .setTitle("machinehose (72) help info :)")
-        .setDescription("use the ;) prefix")
+        .setDescription("use the :) prefix")
         .setColor("#7fc0ff")
         .setThumbnail(botIcon)
         .addField("Commands", "serverinfo\ncowjoke\ndadjoke\nknockknock\nvine\nmeme\n8ball <ur question>\nand if u have admin perms:\nsay <what u want the bot to send back>", true)
