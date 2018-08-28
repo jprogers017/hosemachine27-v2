@@ -1,8 +1,0 @@
-config.*
-node_modules/
-.gitignore
-#install:
-#npm install -g nodemon
-#npm install discord.js
-#npm install fs
-#npm install ms
