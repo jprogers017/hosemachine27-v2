@@ -42,14 +42,22 @@ client.on('ready', function () {
 
 //member joins
 client.on('guildMemberAdd', member => {
-  member.guild.channels.get(joinLeaveChannel).send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err));
-  member.guild.channels.get(generalChat).send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err));
+  if (member.guild.id == myServerID) {
+    // member.guild.channels.get(joinLeaveChannel).send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err));
+    // member.guild.channels.get(generalChat).send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err));
+  } else {
+    return;
+  }
 });
 
 //member leaves
 client.on('guildMemberRemove', member => {
-  member.guild.channels.get(joinLeaveChannel).send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err));
-  member.guild.channels.get(generalChat).send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err));
+  if (member.guild.id == myServerID) {
+    // member.guild.channels.get(joinLeaveChannel).send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err));
+    // member.guild.channels.get(generalChat).send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err));
+  } else {
+    return;
+  }
 });
 
 client.on('message', function (message) {
@@ -69,5 +77,5 @@ client.on('message', function (message) {
     externalLogs.send(`someone slid into my dm's :eyes: :eyes: :eyes:\ni gave them an invite link :)`)
     message.channel.send("did u want an invite link? <https://discordapp.com/api/oauth2/authorize?client_id=463086178757771264&permissions=0&scope=bot>");
     return;
-  } 
+  }
 });
