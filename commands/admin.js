@@ -6,9 +6,10 @@ const myServerID = config.myServerID;
 const myServerLogs = config.myServerLogs;
 const externalServerLogs = config.externalServerLogs;
 
-module.exports.run = async (client, message) => {
+module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
+    const logContent = `<@${message.member.id}> asked for the admin commands`;
 
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
         message.reply("u dont have perms for that, sorry");
@@ -21,16 +22,31 @@ module.exports.run = async (client, message) => {
             .setThumbnail(botIcon)
             .addField("Working Commands", "n/a", true)
             .addField("Broken Commands", "n/a", true)
-            .addField("Coming Soon", "n/a", true)
+            .addField("Coming Soon", "music!", true)
             .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
 
         message.channel.send(commandEmbed);
     }
 
     if (message.guild.id == myServerID) {
-        return serverLogs.send(`<@${message.member.id}> asked for the admin commands`);
+        let logsEmbed = new Discord.RichEmbed()
+            .setDescription(logContent)
+            .addField('channel:', message.channel.name)
+            .setColor(message.member.displayHexColor)
+            .setThumbnail(message.author.avatarURL)
+            .setTimestamp();
+
+        serverLogs.send(logsEmbed);
     } else {
-        return externalLogs.send(`<@${message.member.id}> asked for the admin commands\n**SERVER**: *${message.guild.name}* || **CHANNEL**: ${message.channel.name} || **OWNED BY**: ${message.guild.owner}`);
+        let logsEmbed = new Discord.RichEmbed()
+            .setDescription(logContent)
+            .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+            .addField('channel:', message.channel.name, true)
+            .setColor(message.member.displayHexColor)
+            .setThumbnail(message.author.avatarURL)
+            .setTimestamp();
+
+        externalLogs.send(logsEmbed);
     }
 }
 

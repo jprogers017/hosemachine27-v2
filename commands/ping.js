@@ -9,9 +9,9 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for my invite link`;
+    const logContent = `<@${message.member.id}> checked my response time, ${((new Date().getTime() - message.createdTimestamp) * -1)}ms`;
 
-    message.channel.send(`here u go!!!\n<https://discordapp.com/api/oauth2/authorize?client_id=463086178757771264&permissions=0&scope=bot>`);
+    message.channel.send(`hi, it took me ${((new Date().getTime() - message.createdTimestamp) * -1)}ms to respond to u`);
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -36,5 +36,5 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}invite`
+    name: `${prefix}ping`
 }
