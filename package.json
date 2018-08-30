@@ -1,8 +1,8 @@
 {
   "name": "hosemachine27",
   "version": "1.0.0",
-  "description": "",
-  "main": "hosemachine.js",
+  "description": "my second child",
+  "main": "machinehose72.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
