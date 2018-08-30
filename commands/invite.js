@@ -9,12 +9,25 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for my invite link`;
+    const logContent = `<@${message.member.id}> my invite link!`;
 
-    message.channel.send(`here u go!!!\n<https://discordapp.com/api/oauth2/authorize?client_id=463086178757771264&permissions=0&scope=bot>`);
+    if (message.member.nickname) {
+        var authorName = message.member.nickname;
+    } else {
+        var authorName = message.author.username;
+    }
+    let inviteEmbed = new Discord.RichEmbed()
+        .setAuthor(authorName, message.author.avatarURL)
+        .setDescription(`here u go!!!\n<https://discordapp.com/api/oauth2/authorize?client_id=463086178757771264&permissions=0&scope=bot>`)
+        .setColor(`#73b6ff`)
+        .setThumbnail(message.author.avatarURL)
+        .setTimestamp();
+
+    message.channel.send(inviteEmbed);
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
             .setDescription(logContent)
             .addField('channel:', message.channel.name)
             .setColor(message.member.displayHexColor)
@@ -24,6 +37,7 @@ module.exports.run = async (client, message, args) => {
         serverLogs.send(logsEmbed);
     } else {
         let logsEmbed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
             .setDescription(logContent)
             .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
             .addField('channel:', message.channel.name, true)
@@ -36,5 +50,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}invite`
+    name: `${prefix}invite`,
+    description: `gets u a link to invite the bot to ur server`,
+    type: `member`,
+    usage: `${prefix}invite`
 }

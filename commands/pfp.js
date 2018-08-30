@@ -9,9 +9,9 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> said hello!`;
+    const logContent = `<@${message.member.id}> asked to see their profile picture`;
 
-    message.channel.send(`Hello!!!`);
+    message.reply(message.author.avatarURL);
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -38,8 +38,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}hello`,
-    description: `just says hello back!`,
+    name: `${prefix}pfp`,
+    description: `sends ur profile pic into chat, or whoever u tagged afterwards`,
     type: `member`,
-    usage: `${prefix}hello`
+    usage: `${prefix}pfp [user]`
 }

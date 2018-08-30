@@ -9,27 +9,18 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for the admin commands`;
+    const logContent = `<@${message.member.id}> flipped a coin`;
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-        message.reply("u dont have perms for that, sorry");
+    var chance = Math.floor(Math.random() * 2);
+    if (chance == 0) {
+        message.reply(`heads`);
     } else {
-        let botIcon = client.user.displayAvatarURL;
-        let commandEmbed = new Discord.RichEmbed()
-            .setTitle(`${client.user.name} admin commands :)`)
-            .setDescription("you need a role with admin perms turned on")
-            .setColor("#7fc0ff")
-            .setThumbnail(botIcon)
-            .addField("Working Commands", "n/a", true)
-            .addField("Broken Commands", "n/a", true)
-            .addField("Coming Soon", "music!", true)
-            .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
-
-        message.channel.send(commandEmbed);
+        message.reply(`tails`);
     }
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
             .setDescription(logContent)
             .addField('channel:', message.channel.name)
             .setColor(message.member.displayHexColor)
@@ -39,6 +30,7 @@ module.exports.run = async (client, message, args) => {
         serverLogs.send(logsEmbed);
     } else {
         let logsEmbed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
             .setDescription(logContent)
             .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
             .addField('channel:', message.channel.name, true)
@@ -51,5 +43,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}admin`
+    name: `${prefix}coinflip`,
+    description: `flips a coin for u, assuming u did the command because u dont have a coin`,
+    type: `member`,
+    usage: `${prefix}coinflip`
 }

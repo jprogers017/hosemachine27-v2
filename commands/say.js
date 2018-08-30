@@ -9,9 +9,15 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> said hello!`;
+    const botMessage = args.join(" ");
+    const logContent = `<@${message.member.id}> just had me say "${botMessage}"`;
 
-    message.channel.send(`Hello!!!`);
+    if (!message.member.hasPermission("ADMINISTRATOR")) {
+        message.reply("no perms for that!!! sorry!!!");
+    } else {
+        message.delete().catch();
+        message.channel.send(botMessage);
+    }
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -38,8 +44,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}hello`,
-    description: `just says hello back!`,
-    type: `member`,
-    usage: `${prefix}hello`
+    name: `${prefix}say`,
+    description: `has the bot repeat after u`,
+    type: `admin`,
+    usage: `${prefix}say <what u want the bot to say>`
 }

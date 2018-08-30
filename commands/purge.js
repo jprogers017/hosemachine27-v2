@@ -9,9 +9,15 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> said hello!`;
+    const logContent = `<@${message.member.id}> cleared ${args[0]} messages`;
 
-    message.channel.send(`Hello!!!`);
+    if (!message.member.hasPermission("ADMINISTRATOR")) message.reply("lmao, u dont have perms for that. stupid bitch");
+    if (!args[0]) message.channel.send("yo, u cant clear 0 messages, dumb fuck");
+    if ((message.member.hasPermission("ADMINISTRATOR")) && (args[0])) {
+        message.channel.bulkDelete(args[0]).then(() => {
+            message.channel.send(`cleared ${args[0]} messages, yikes`).then(msg => msg.delete(2500));
+        });
+    }
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -38,8 +44,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}hello`,
-    description: `just says hello back!`,
-    type: `member`,
-    usage: `${prefix}hello`
+    name: `${prefix}purge`,
+    description: `purges a set set of messages`,
+    type: `admin`,
+    usage: `${prefix}purge <number of messages>`
 }

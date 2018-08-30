@@ -9,9 +9,13 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> said hello!`;
+    const logContent = `<@${message.member.id}> told <@!200837857214988298> to suck a dick`;
 
-    message.channel.send(`Hello!!!`);
+    if (!message.member.hasPermission("ADMINISTRATOR")) {
+        message.reply("u cant say that to jackie :(");
+    } else {
+        message.channel.send(`<@!200837857214988298>, suck my dick`);
+    }
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -38,8 +42,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}hello`,
-    description: `just says hello back!`,
-    type: `member`,
-    usage: `${prefix}hello`
+    name: `${prefix}smd`,
+    description: `tells ninjackoff peeno to suck ur dick`,
+    type: `admin`,
+    usage: `${prefix}smd`
 }

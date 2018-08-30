@@ -9,9 +9,14 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> said hello!`;
+    const logContent = `<@${message.member.id}> is PROBABLY being kinkshamed!`;
 
-    message.channel.send(`Hello!!!`);
+    let kinkshamedUser = message.mentions.members.first();
+    if (kinkshamedUser == undefined) {
+        return message.reply(`who am i kinkshaming?`);
+    } else {
+        message.channel.send(`${kinkshamedUser}, should i be kinkshaming u? i think i should`);
+    }
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -38,8 +43,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}hello`,
-    description: `just says hello back!`,
+    name: `${prefix}kinkshame`,
+    description: `kinkshames the tagged user`,
     type: `member`,
-    usage: `${prefix}hello`
+    usage: `${prefix}kinkshame <user>`
 }

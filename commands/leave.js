@@ -9,9 +9,9 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> said hello!`;
+    const logContent = `<@${message.member.id}> had ${client.user.username} leave the voice channel`;
 
-    message.channel.send(`Hello!!!`);
+    message.channel.send(`i haven't worked on this yet, it's non-functional`);
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -38,8 +38,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}hello`,
-    description: `just says hello back!`,
+    name: `${prefix}leave`,
+    description: `makes the bot leave the current voice channel its in`,
     type: `member`,
-    usage: `${prefix}hello`
+    usage: `${prefix}leave`
 }

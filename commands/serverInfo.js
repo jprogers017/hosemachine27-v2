@@ -9,27 +9,24 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for admin help`;
+    const logContent = `<@${message.member.id}> asked for the server information`;
 
-    if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-        message.reply("u dont have perms for that, sorry");
-    } else {
-        let botIcon = client.user.displayAvatarURL;
-        let helpEmbed = new Discord.RichEmbed()
-            .setTitle(`${client.user.name} admin help info :)`)
-            .setDescription("you need a role with admin perms turned on")
-            .setColor("#7fc0ff")
-            .setThumbnail(botIcon)
-            .addField("Commands", `${prefix}admin`, true)
-            .addField("Invite Link", `${prefix}invite`, true)
-            .addField("Github", `${prefix}github`, true)
-            .setFooter(`Created by: Josephine#6301 on ${client.user.createdAt}`);
+    let serverIcon = message.guild.iconURL;
+    let serverEmbed = new Discord.RichEmbed()
+        .setTitle("Server Information")
+        .setColor("#7fc0ff")
+        .setThumbnail(serverIcon)
+        .addField("Server Name", message.guild.name, true)
+        .addField("Server Owner", message.guild.owner, true)
+        .addField("Total Members", message.guild.memberCount, true)
+        .addField("Created On", message.guild.createdAt, true)
+        .addField("You joined", message.member.joinedAt, true);
 
-        message.channel.send(helpEmbed);
-    }
+    message.channel.send(serverEmbed);
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
             .setDescription(logContent)
             .addField('channel:', message.channel.name)
             .setColor(message.member.displayHexColor)
@@ -39,6 +36,7 @@ module.exports.run = async (client, message, args) => {
         serverLogs.send(logsEmbed);
     } else {
         let logsEmbed = new Discord.RichEmbed()
+            .setAuthor(client.user.username, client.user.avatarURL)
             .setDescription(logContent)
             .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
             .addField('channel:', message.channel.name, true)
@@ -51,5 +49,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}adminhelp`
+    name: `${prefix}serverinfo`,
+    description: `sends information about the server`,
+    type: `member`,
+    usage: `${prefix}serverinfo`
 }

@@ -9,9 +9,15 @@ const externalServerLogs = config.externalServerLogs;
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(myServerLogs);
     const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> said hello!`;
+    const logContent = `<@${message.member.id}> asked to see a puppy`;
 
-    message.channel.send(`Hello!!!`);
+    number = 40;
+    var randomDog = Math.floor(Math.random() * (number - 1 + 1)) + 1;
+
+    message.channel.send("did someone mention...dogs?");
+    message.channel.send({
+        files: ["./puppies/" + randomDog + ".jpg"]
+    });
 
     if (message.guild.id == myServerID) {
         let logsEmbed = new Discord.RichEmbed()
@@ -38,8 +44,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}hello`,
-    description: `just says hello back!`,
+    name: `${prefix}puppy`,
+    description: `sends u a random puppy picture`,
     type: `member`,
-    usage: `${prefix}hello`
+    usage: `${prefix}puppy`
 }
