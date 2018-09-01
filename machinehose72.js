@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const client = new Discord.Client({
-  disableEveryone: true
-});
+const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 //commands handler
@@ -21,55 +19,20 @@ fs.readdir("./commands/", (err, files) => {
   });
 });
 
-//variables 
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
-const prefix = config.prefix;
-const discordToken = config.discordToken;
-const myServerID = config.myServerID;
-const myServerLogs = config.myServerLogs;
-const externalServerLogs = config.externalServerLogs;
-// const joinLeaveChannel = config.joinLeaveChannel;
-// const generalChat = config.generalChat;
 
-//bot login
-client.login(discordToken);
-
-//on message in console and activity
 client.on('ready', function () {
   console.log(`${client.user.username} is online in ${client.guilds.size} server(s)!`);
-  client.user.setActivity(`type ${prefix}cowjoke, i dare u`);
+  client.user.setActivity(`${config.prefix}help`);
 });
-
-// //member joins
-// client.on('guildMemberAdd', member => {
-//   if (member.guild.id == myServerID) {
-//     member.guild.channels.get(joinLeaveChannel).send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err));
-//     member.guild.channels.get(generalChat).send(`<@${member.user.id}> just joined the server!!! hello!!!!!`).catch(err => console.log(err));
-//   } else {
-//     return;
-//   }
-// });
-
-// //member leaves
-// client.on('guildMemberRemove', member => {
-//   if (member.guild.id == myServerID) {
-//     member.guild.channels.get(joinLeaveChannel).send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err));
-//     member.guild.channels.get(generalChat).send(`<@${member.user.id}> just left, :(`).catch(err => console.log(err));
-//   } else {
-//     return;
-//   }
-// });
 
 client.on('message', function (message) {
   //variables
-  const mess = message.content.toLowerCase();
-  let messageArray = message.content.split(/ +/);
-  let command = messageArray[0];
-  let args = messageArray.slice(1);
-  const serverLogs = client.channels.get(myServerLogs);
-  const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+  const serverLogs = client.channels.get(config.myServerLogs);
+  const externalLogs = client.guilds.get(config.myServerID).channels.get(config.externalServerLogs);
   let commandFile = client.commands.get(command);
-
   if (commandFile) commandFile.run(client, message, args);
 
   //crashing? not on my watch
@@ -85,3 +48,5 @@ client.on('message', function (message) {
     return;
   }
 });
+
+client.login(config.discordToken);

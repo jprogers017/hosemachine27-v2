@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
         }
     });
 
-    const logContent = `<@${message.member.id}> asked the bot to leave it's current voice channel`;
+    const logContent = `<@${message.member.id}> asked the bot to join their current voice channel and play {song variable tbd}`;
     let logsEmbed = new Discord.RichEmbed()
         .setAuthor(client.user.username, client.user.avatarURL)
         .setDescription(logContent)
@@ -31,9 +31,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${config.prefix}leave`,
-    description: `makes the bot leave the current voice channel its in`,
+    name: `${config.prefix}play`,
+    description: `has the bot join the voice channel ur currently in and play a song`,
     type: `member`,
-    usage: `${config.prefix}leave`,
+    usage: `${config.prefix}play <youtube link OR search for a song>`,
     developmentStage: "unfinished"
 }

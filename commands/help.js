@@ -1,20 +1,11 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
-const prefix = config.prefix;
-const myServerID = config.myServerID;
-const myServerLogs = config.myServerLogs;
-const externalServerLogs = config.externalServerLogs;
 
 module.exports.run = async (client, message, args) => {
-    const serverLogs = client.channels.get(myServerLogs);
-    const externalLogs = client.guilds.get(myServerID).channels.get(externalServerLogs);
-    const logContent = `<@${message.member.id}> asked for help!`;
-
-    let msg = `__**help!**__`;
-    client.commands.forEach(c => {
-        msg = msg + `\n**${c.help.name}**, usage: ${c.help.usage} *(${c.help.type})*\n${c.help.description}`;
-    });
+    const serverLogs = client.channels.get(config.myServerLogs);
+    const externalLogs = client.guilds.get(config.myServerID).channels.get(config.externalServerLogs);
 
     if (message.member.nickname) {
         var authorName = message.member.nickname;
@@ -22,41 +13,34 @@ module.exports.run = async (client, message, args) => {
         var authorName = message.author.username;
     }
     let helpEmbed = new Discord.RichEmbed()
-        .setAuthor(`i heard u needed help, ${authorName}?`, message.author.avatarURL)
-        .setTitle(`heres some helpful information about all of my commands!`)
-        .setDescription(msg)
+        .setAuthor(`${client.user.username}'s help page! u need help, ${authorName}?`, message.author.avatarURL)
+        .setTitle(`__usage: ${config.prefix}command *<required>, [optional]*__`)
         .setColor(message.member.displayHexColor)
-        .setFooter(`hope this was enough help! feel free to do ${prefix}questions if you need anymore help!`)
-        .setTimestamp();
+        .setFooter(`UNDER CONSTRUCTION: for command specific help, do the command with "?" afterwards, for example, ${config.prefix}hello ?`, );
+
+    client.commands.forEach(c => {
+        helpEmbed.addField(`${c.help.name} - *usage: ${c.help.usage}* **(${c.help.developmentStage})**`, c.help.description);
+    });
     message.channel.send(helpEmbed);
 
-    if (message.guild.id == myServerID) {
-        let logsEmbed = new Discord.RichEmbed()
-            .setAuthor(client.user.username, client.user.avatarURL)
-            .setDescription(logContent)
-            .addField('channel:', message.channel.name)
-            .setColor(message.member.displayHexColor)
-            .setThumbnail(message.author.avatarURL)
-            .setTimestamp();
-
+    const logContent = `<@${message.member.id}> asked for help!`;
+    let logsEmbed = new Discord.RichEmbed()
+        .setAuthor(client.user.username, client.user.avatarURL)
+        .setDescription(logContent)
+        .addField('channel:', message.channel.name)
+        .setColor(message.member.displayHexColor)
+        .setThumbnail(message.author.avatarURL)
+        .setTimestamp();
+    if (message.guild.id == config.myServerID) {
         serverLogs.send(logsEmbed);
     } else {
-        let logsEmbed = new Discord.RichEmbed()
-            .setAuthor(client.user.username, client.user.avatarURL)
-            .setDescription(logContent)
-            .addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-            .addField('channel:', message.channel.name, true)
-            .setColor(message.member.displayHexColor)
-            .setThumbnail(message.author.avatarURL)
-            .setTimestamp();
-
+        logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
         externalLogs.send(logsEmbed);
     }
 }
 
 module.exports.help = {
-    name: `${prefix}help`,
+    name: `${config.prefix}help`,
     description: `shows the list of all the commands`,
-    type: `member`,
-    usage: `${prefix}help`
+    usage: `${config.prefix}help`
 }

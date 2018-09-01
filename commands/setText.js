@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
         }
     });
 
-    const logContent = `<@${message.member.id}> asked the bot to leave it's current voice channel`;
+    const logContent = `<@${message.member.id}> set the bot's designated channel for commands`;
     let logsEmbed = new Discord.RichEmbed()
         .setAuthor(client.user.username, client.user.avatarURL)
         .setDescription(logContent)
@@ -31,9 +31,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${config.prefix}leave`,
-    description: `makes the bot leave the current voice channel its in`,
-    type: `member`,
-    usage: `${config.prefix}leave`,
+    name: `${config.prefix}settext`,
+    description: `sets the text channel for music commands, commands will be ignored in other channels and automatically deleted`,
+    type: `admin`,
+    usage: `${config.prefix}settext <channel id or name>`,
     developmentStage: "unfinished"
 }

@@ -14,7 +14,7 @@ module.exports.run = async (client, message, args) => {
         }
     });
 
-    const logContent = `<@${message.member.id}> asked the bot to leave it's current voice channel`;
+    const logContent = `<@${message.member.id}> force skipped the current song`;
     let logsEmbed = new Discord.RichEmbed()
         .setAuthor(client.user.username, client.user.avatarURL)
         .setDescription(logContent)
@@ -31,9 +31,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${config.prefix}leave`,
-    description: `makes the bot leave the current voice channel its in`,
-    type: `member`,
-    usage: `${config.prefix}leave`,
+    name: `${config.prefix}fskip`,
+    description: `force skips the current song`,
+    type: `admin`,
+    usage: `${config.prefix}fskip`,
     developmentStage: "unfinished"
 }
