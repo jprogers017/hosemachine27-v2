@@ -2,15 +2,17 @@ const Discord = require("discord.js");
 const fs = require("fs");
 
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+let prefix = config.prefix;
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message, args, c) => {
     const serverLogs = client.channels.get(config.myServerLogs);
     const externalLogs = client.guilds.get(config.myServerID).channels.get(config.externalServerLogs);
 
     message.channel.send({
         embed: {
+            title: "This feature is under development.",
             color: 0x73b6ff,
-            description: "This feature is under development."
+            description: "clears the play queue"
         }
     });
 
@@ -31,9 +33,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${config.prefix}clear`,
+    name: `${prefix}clear`,
     description: `clears the play queue`,
     type: `admin`,
-    usage: `${config.prefix}clear`,
+    usage: `${prefix}clear, ${prefix}clear [?]`,
     developmentStage: "unfinished"
 }

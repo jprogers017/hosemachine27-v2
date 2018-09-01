@@ -28,9 +28,10 @@ client.on('ready', function () {
 
 client.on('message', function (message) {
   //variables
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  const serverLogs = client.channels.get(config.myServerLogs);
+  
+  let messageArray = message.content.split(/ +/);
+  let command = messageArray[0];
+  let args = messageArray.slice(1);
   const externalLogs = client.guilds.get(config.myServerID).channels.get(config.externalServerLogs);
   let commandFile = client.commands.get(command);
   if (commandFile) commandFile.run(client, message, args);

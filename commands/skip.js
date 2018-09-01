@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+let prefix = config.prefix;
 
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(config.myServerLogs);
@@ -9,8 +10,9 @@ module.exports.run = async (client, message, args) => {
 
     message.channel.send({
         embed: {
+            title: "This feature is under development.",
             color: 0x73b6ff,
-            description: "This feature is under development."
+            description: "indicates u would like the current song skipped, and initiates a vote skip (number depending on how many in the channel, 2/3 majority"
         }
     });
 
@@ -31,9 +33,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${config.prefix}skip`,
+    name: `${prefix}skip`,
     description: `indicates u would like the current song skipped, and initiates a vote skip (number depending on how many in the channel, 2/3 majority`,
     type: `member`,
-    usage: `${config.prefix}skip`,
+    usage: `${prefix}skip, ${prefix}skip [?]`,
     developmentStage: "unfinished"
 }

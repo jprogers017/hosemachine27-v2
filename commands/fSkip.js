@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+let prefix = config.prefix;
 
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(config.myServerLogs);
@@ -9,10 +10,12 @@ module.exports.run = async (client, message, args) => {
 
     message.channel.send({
         embed: {
+            title: "This feature is under development.",
             color: 0x73b6ff,
-            description: "This feature is under development."
+            description: "force skips the current song"
         }
     });
+
 
     const logContent = `<@${message.member.id}> force skipped the current song`;
     let logsEmbed = new Discord.RichEmbed()
@@ -31,9 +34,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${config.prefix}fskip`,
+    name: `${prefix}fskip`,
     description: `force skips the current song`,
     type: `admin`,
-    usage: `${config.prefix}fskip`,
+    usage: `${prefix}fskip, ${prefix}fskip [?]`,
     developmentStage: "unfinished"
 }

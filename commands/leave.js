@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+let prefix = config.prefix;
 
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(config.myServerLogs);
@@ -9,8 +10,9 @@ module.exports.run = async (client, message, args) => {
 
     message.channel.send({
         embed: {
+            title: "This feature is under development.",
             color: 0x73b6ff,
-            description: "This feature is under development."
+            description: "makes the bot leave the current voice channel its in"
         }
     });
 
@@ -31,9 +33,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${config.prefix}leave`,
+    name: `${prefix}leave`,
     description: `makes the bot leave the current voice channel its in`,
     type: `member`,
-    usage: `${config.prefix}leave`,
+    usage: `${prefix}leave, ${prefix}leave [?]`,
     developmentStage: "unfinished"
 }

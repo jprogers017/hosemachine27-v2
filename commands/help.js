@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+let prefix = config.prefix;
 
 module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(config.myServerLogs);
@@ -14,12 +15,17 @@ module.exports.run = async (client, message, args) => {
     }
     let helpEmbed = new Discord.RichEmbed()
         .setAuthor(`${client.user.username}'s help page! u need help, ${authorName}?`, message.author.avatarURL)
-        .setTitle(`__usage: ${config.prefix}command *<required>, [optional]*__`)
+        .setTitle(`__usage: ${prefix}command *<required>, [optional]*__`)
         .setColor(message.member.displayHexColor)
-        .setFooter(`UNDER CONSTRUCTION: for command specific help, do the command with "?" afterwards, for example, ${config.prefix}hello ?`, );
+        .setFooter(`UNDER CONSTRUCTION: for command specific help, do the command with "?" afterwards, for example, ${prefix}hello ?`, );
 
     client.commands.forEach(c => {
-        helpEmbed.addField(`${c.help.name} - *usage: ${c.help.usage}* **(${c.help.developmentStage})**`, c.help.description);
+        if(c.help.developmentStage == 'unfinished') {
+            helpEmbed.addField(`${c.help.name} - *usage: ${c.help.usage}*`, `${c.help.description} __**(${c.help.developmentStage})**__`);
+        } else {
+            helpEmbed.addField(`${c.help.name} - *usage: ${c.help.usage}*`, c.help.description);
+        }
+        
     });
     message.channel.send(helpEmbed);
 
@@ -40,7 +46,7 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${config.prefix}help`,
+    name: `${prefix}help`,
     description: `shows the list of all the commands`,
-    usage: `${config.prefix}help`
+    usage: `${prefix}help`
 }

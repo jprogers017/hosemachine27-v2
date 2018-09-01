@@ -12,11 +12,11 @@ module.exports.run = async (client, message, args) => {
         embed: {
             title: "This feature is under development.",
             color: 0x73b6ff,
-            description: "removes a song from the queue"
+            description: "has the bot join the voice channel ur currently"
         }
     });
 
-    const logContent = `<@${message.member.id}> had a song removed from the play queue`;
+    const logContent = `<@${message.member.id}> asked the bot to join their current voice channel`;
     let logsEmbed = new Discord.RichEmbed()
         .setAuthor(client.user.username, client.user.avatarURL)
         .setDescription(logContent)
@@ -33,9 +33,9 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}remove`,
-    description: `removes a song from the queue`,
-    type: `admin`,
-    usage: `${prefix}remove <song's number position in queue>, ${prefix}remove [?]`,
+    name: `${prefix}join`,
+    description: `has the bot join the voice channel ur currently`,
+    type: `member`,
+    usage: `${prefix}join, ${prefix}join [?]`,
     developmentStage: "unfinished"
 }

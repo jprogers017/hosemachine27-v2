@@ -8,15 +8,16 @@ module.exports.run = async (client, message, args) => {
     const serverLogs = client.channels.get(config.myServerLogs);
     const externalLogs = client.guilds.get(config.myServerID).channels.get(config.externalServerLogs);
 
+    var ping = ((new Date().getTime() - message.createdTimestamp));
     message.channel.send({
         embed: {
-            title: "This feature is under development.",
+            title: "Ping",
             color: 0x73b6ff,
-            description: "removes a song from the queue"
+            description: `${ping}ms`
         }
     });
 
-    const logContent = `<@${message.member.id}> had a song removed from the play queue`;
+    const logContent = `<@${message.member.id}> checked the bot's ping (${ping}ms)`;
     let logsEmbed = new Discord.RichEmbed()
         .setAuthor(client.user.username, client.user.avatarURL)
         .setDescription(logContent)
@@ -33,9 +34,8 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.help = {
-    name: `${prefix}remove`,
-    description: `removes a song from the queue`,
-    type: `admin`,
-    usage: `${prefix}remove <song's number position in queue>, ${prefix}remove [?]`,
-    developmentStage: "unfinished"
+    name: `${prefix}ping`,
+    description: `checks bot response time`,
+    type: `member`,
+    usage: `${prefix}ping, ${prefix}ping [?]`
 }
