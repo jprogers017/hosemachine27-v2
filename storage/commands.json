@@ -1,0 +1,86 @@
+{
+    "play": {
+        "name": "play",
+        "desc": "play a song from youtube",
+        "usage": "play <youtube link>",
+        "type": "member",
+        "stage": "functional"
+    },
+    "search": {
+        "name": "search",
+        "desc": "search for a song on youtube",
+        "usage": "search <video title ur looking for>",
+        "type": "member",
+        "stage": "under development"
+    },
+    "leave": {
+        "name": "leave",
+        "desc": "has bot leave the current voice channel",
+        "usage": "leave",
+        "type": "member",
+        "stage": "functional"
+    },
+    "queue": {
+        "name": "queue",
+        "desc": "shows the current song queue",
+        "usage": "queue",
+        "type": "member",
+        "stage": "under development"
+    },
+    "nowplaying": {
+        "name": "nowplaying",
+        "desc": "shows information for the song currently playing",
+        "usage": "current",
+        "type": "member",
+        "stage": "under development"
+    },
+    "skip": {
+        "name": "skip",
+        "desc": "starts a vote to skip the current song",
+        "usage": "skip",
+        "type": "member",
+        "stage": "under development"
+    },
+    "hello": {
+        "name": "hello",
+        "desc": "just say hello!",
+        "usage": "hello",
+        "type": "member",
+        "stage": "complete"
+    },
+    "ping": {
+        "name": "ping",
+        "desc": "sends back bot's current response time",
+        "usage": "ping",
+        "type": "member",
+        "stage": "complete"
+    },
+    "pause": {
+        "name": "pause",
+        "desc": "pauses the current song",
+        "usage": "pause",
+        "type": "admin",
+        "stage": "under development"
+    },
+    "resume": {
+        "name": "resume",
+        "desc": "resumes the currently paused song",
+        "usage": "resume",
+        "type": "admin",
+        "stage": "under development"
+    },
+    "fskip": {
+        "name": "fskip",
+        "desc": "force skips the current song",
+        "usage": "fskip",
+        "type": "admin",
+        "stage": "under development"
+    },
+    "volume": {
+        "name": "volume",
+        "desc": "controls bot's overall volume",
+        "usage": "volume <number value between 1 and 150",
+        "type": "admin",
+        "stage": "under development"
+    }
+}
