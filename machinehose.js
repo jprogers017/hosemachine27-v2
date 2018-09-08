@@ -724,7 +724,7 @@ function setStatus() {
     });
     timer = 2;
     return;
-  } else if (timer === 2) {
+  } else {
     client.user.setActivity(`try ${defaultPrefix}cowjoke, i dare u`, {
       type: 'PLAYING'
     });
