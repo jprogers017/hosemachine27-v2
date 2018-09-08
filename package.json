@@ -9,13 +9,16 @@
   "author": "Josephine#6301 on Discord",
   "license": "ISC",
   "dependencies": {
+    "@amandeepmittal/number-formatter": "^1.0.1",
     "discord.js": "^11.4.2",
     "ffmpeg-binaries": "^4.0.0",
     "fs": "0.0.1-security",
     "get-youtube-id": "^1.0.0",
+    "hh-mm-ss": "^1.2.0",
     "ms": "^2.1.1",
     "node-opus": "^0.3.0",
     "request": "^2.88.0",
+    "seconds-converter": "^1.3.0",
     "youtube-info": "^1.2.0",
     "yt-search": "^0.1.4",
     "ytdl-core": "^0.25.0"

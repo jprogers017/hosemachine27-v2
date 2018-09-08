@@ -2,49 +2,49 @@
     "play": {
         "name": "play",
         "desc": "play a song from youtube",
-        "usage": "play <youtube link>",
+        "usage": "play <youtube link OR song title>",
         "type": "member",
-        "stage": "functional"
-    },
-    "search": {
-        "name": "search",
-        "desc": "search for a song on youtube",
-        "usage": "search <video title ur looking for>",
-        "type": "member",
-        "stage": "under development"
+        "stage": "complete"
     },
     "leave": {
         "name": "leave",
         "desc": "has bot leave the current voice channel",
         "usage": "leave",
         "type": "member",
-        "stage": "functional"
+        "stage": "complete"
     },
     "queue": {
         "name": "queue",
         "desc": "shows the current song queue",
         "usage": "queue",
         "type": "member",
-        "stage": "under development"
+        "stage": "complete"
     },
-    "nowplaying": {
-        "name": "nowplaying",
+    "np": {
+        "name": "now playing",
         "desc": "shows information for the song currently playing",
-        "usage": "current",
+        "usage": "np",
         "type": "member",
-        "stage": "under development"
+        "stage": "under development - sends information for girls like you by maroon 5"
     },
     "skip": {
         "name": "skip",
         "desc": "starts a vote to skip the current song",
         "usage": "skip",
         "type": "member",
-        "stage": "under development"
+        "stage": "complete"
     },
     "hello": {
         "name": "hello",
         "desc": "just say hello!",
         "usage": "hello",
+        "type": "member",
+        "stage": "complete"
+    },
+    "cowjoke": {
+        "name": "cow joke",
+        "desc": "sends a random cow joke",
+        "usage": "cowjoke",
         "type": "member",
         "stage": "complete"
     },
@@ -60,27 +60,34 @@
         "desc": "pauses the current song",
         "usage": "pause",
         "type": "admin",
-        "stage": "under development"
+        "stage": "complete"
     },
     "resume": {
         "name": "resume",
-        "desc": "resumes the currently paused song",
+        "desc": "resumes the current song",
         "usage": "resume",
         "type": "admin",
-        "stage": "under development"
+        "stage": "complete"
     },
     "fskip": {
         "name": "fskip",
         "desc": "force skips the current song",
         "usage": "fskip",
         "type": "admin",
-        "stage": "under development"
+        "stage": "complete"
     },
     "volume": {
         "name": "volume",
-        "desc": "controls bot's overall volume",
-        "usage": "volume <number value between 1 and 150",
+        "desc": "controls bot's volume for the current song, default 5",
+        "usage": "volume <number>",
         "type": "admin",
-        "stage": "under development"
+        "stage": "complete"
+    },
+    "prefix": {
+        "name": "prefix",
+        "desc": "changes the bot's prefix for the server",
+        "usage": "prefix [new prefix], prefix [?]",
+        "type": "admin",
+        "stage": "complete"
     }
 }
