@@ -24,7 +24,7 @@ client.on('ready', function () {
 
 client.on('message', function (message) {
   //server prefixes
-  let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf-8"));
+  let prefixes = JSON.parse(fs.readFileSync("./storage/prefixes.json", "utf-8"));
   if (!prefixes[message.guild.id]) {
     prefixes[message.guild.id] = {
       prefixes: config.prefix
