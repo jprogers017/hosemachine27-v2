@@ -15,11 +15,12 @@ const defaultPrefix = ":)";
 const yt_api_key = config.yt_api_key;
 var logContent = "";
 var guilds = {};
-var timer = 0;
 
 client.on('ready', function () {
   console.log(`${client.user.username} is online in ${client.guilds.size} server(s)!`);
-  setInterval(setStatus, 8500);
+  client.user.setActivity(`music on youtube`, {
+    type: 'LISTENING'
+  });
 });
 
 client.on('message', function (message) {
@@ -402,7 +403,7 @@ client.on('message', function (message) {
       externalLogs.send(logsEmbed);
     }
   }
-  
+
   //cow jokes
   if (message.content.toLowerCase().startsWith(`${prefix}cowjoke`)) {
     if (!message.guild) return;
@@ -709,26 +710,4 @@ function search_video(query, callback) {
 
 function isYoutube(str) {
   return str.indexOf("youtube.com") > -1;
-}
-
-function setStatus() {
-  if (timer === 0) {
-    client.user.setActivity(`my default prefix is ${defaultPrefix}`, {
-      type: 'PLAYING'
-    });
-    timer = 1;
-    return;
-  } else if (timer === 1) {
-    client.user.setActivity(`music on youtube`, {
-      type: 'LISTENING'
-    });
-    timer = 2;
-    return;
-  } else {
-    client.user.setActivity(`try ${defaultPrefix}cowjoke, i dare u`, {
-      type: 'PLAYING'
-    });
-    timer = 0;
-    return;
-  }
 }
