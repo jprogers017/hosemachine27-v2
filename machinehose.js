@@ -345,35 +345,6 @@ client.on('message', function (message) {
     }
   }
 
-  //volume 
-  if (message.content.toLowerCase().startsWith(`${prefix}volume`)) {
-    if (!message.guild) return;
-    else if (guilds[message.guild.id].queue.length === 0) return message.channel.send(`theres nothing playing tho`);
-    else if (!args[0]) return message.channel.send(`the current volume level is ${guilds[message.guild.id].volume}`);
-    else if (!message.member.hasPermission("ADMINISTRATOR")) {
-      message.channel.send(`u dont have perms to do that :/// sorry`);
-    } else {
-      guilds[message.guild.id].volume = args[0];
-      guilds[message.guild.id].dispatcher.setVolumeLogarithmic(args[0] / 5);
-      return message.channel.send(`volume for this song has been set to ${args[0]}`);
-    }
-
-    logContent = `<@${message.member.id}> changed the volume to ${args[0]} for the current song)`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
-    if (message.guild.id == config.myServerID) {
-      serverLogs.send(logsEmbed);
-    } else {
-      logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-      externalLogs.send(logsEmbed);
-    }
-  }
-
   //hello
   if (message.content.toLowerCase().startsWith(`${prefix}hello`)) {
     if (!message.guild) return;
@@ -402,6 +373,36 @@ client.on('message', function (message) {
     }
   }
 
+  //ping
+  if (message.content.toLowerCase().startsWith(`${prefix}ping`)) {
+    if (!message.guild) return;
+    else {
+      var ping = ((new Date().getTime() - message.createdTimestamp) * -1);
+      message.channel.send({
+        embed: {
+          title: "Ping",
+          color: 0x73b6ff,
+          description: `${ping}ms`
+        }
+      });
+    }
+
+    logContent = `<@${message.member.id}> `;
+    let logsEmbed = new Discord.RichEmbed()
+      .setAuthor(client.user.username, client.user.avatarURL)
+      .setDescription(logContent)
+      .addField('channel:', message.channel.name)
+      .setColor(message.member.displayHexColor)
+      .setThumbnail(message.author.avatarURL)
+      .setTimestamp();
+    if (message.guild.id == config.myServerID) {
+      serverLogs.send(logsEmbed);
+    } else {
+      logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+      externalLogs.send(logsEmbed);
+    }
+  }
+  
   //cow jokes
   if (message.content.toLowerCase().startsWith(`${prefix}cowjoke`)) {
     if (!message.guild) return;
@@ -499,6 +500,35 @@ client.on('message', function (message) {
     }
   }
 
+  //volume 
+  if (message.content.toLowerCase().startsWith(`${prefix}volume`)) {
+    if (!message.guild) return;
+    else if (guilds[message.guild.id].queue.length === 0) return message.channel.send(`theres nothing playing tho`);
+    else if (!args[0]) return message.channel.send(`the current volume level is ${guilds[message.guild.id].volume}`);
+    else if (!message.member.hasPermission("ADMINISTRATOR")) {
+      message.channel.send(`u dont have perms to do that :/// sorry`);
+    } else {
+      guilds[message.guild.id].volume = args[0];
+      guilds[message.guild.id].dispatcher.setVolumeLogarithmic(args[0] / 5);
+      return message.channel.send(`volume for this song has been set to ${args[0]}`);
+    }
+
+    logContent = `<@${message.member.id}> changed the volume to ${args[0]} for the current song)`;
+    let logsEmbed = new Discord.RichEmbed()
+      .setAuthor(client.user.username, client.user.avatarURL)
+      .setDescription(logContent)
+      .addField('channel:', message.channel.name)
+      .setColor(message.member.displayHexColor)
+      .setThumbnail(message.author.avatarURL)
+      .setTimestamp();
+    if (message.guild.id == config.myServerID) {
+      serverLogs.send(logsEmbed);
+    } else {
+      logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
+      externalLogs.send(logsEmbed);
+    }
+  }
+
   //custom server prefixes
   if (message.content.toLowerCase().startsWith(`${prefix}prefix`)) {
     if (!message.guild) return;
@@ -522,36 +552,6 @@ client.on('message', function (message) {
     }
 
     logContent = `<@${message.member.id}> set the server's prefix to ${args[0]})`;
-    let logsEmbed = new Discord.RichEmbed()
-      .setAuthor(client.user.username, client.user.avatarURL)
-      .setDescription(logContent)
-      .addField('channel:', message.channel.name)
-      .setColor(message.member.displayHexColor)
-      .setThumbnail(message.author.avatarURL)
-      .setTimestamp();
-    if (message.guild.id == config.myServerID) {
-      serverLogs.send(logsEmbed);
-    } else {
-      logsEmbed.addField('server (owner):', `${message.guild.name} (${message.guild.owner})`, true)
-      externalLogs.send(logsEmbed);
-    }
-  }
-
-  //ping
-  if (message.content.toLowerCase().startsWith(`${prefix}ping`)) {
-    if (!message.guild) return;
-    else {
-      var ping = ((new Date().getTime() - message.createdTimestamp) * -1);
-      message.channel.send({
-        embed: {
-          title: "Ping",
-          color: 0x73b6ff,
-          description: `${ping}ms`
-        }
-      });
-    }
-
-    logContent = `<@${message.member.id}> `;
     let logsEmbed = new Discord.RichEmbed()
       .setAuthor(client.user.username, client.user.avatarURL)
       .setDescription(logContent)
