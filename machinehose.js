@@ -579,6 +579,7 @@ client.on('message', function (message) {
       }
       const helpEmbed = new Discord.RichEmbed()
         .setAuthor(`${client.user.username}'s help page! u need help, ${authorName}?`, message.author.avatarURL)
+        .setDescription(`[click here for my github!](https://github.com/jprogers017/machinehose72)\n[click here for my server invitation link!](https://discordapp.com/api/oauth2/authorize?client_id=463086178757771264&permissions=0&scope=bot)`)
         .setColor(message.member.displayHexColor)
       helpEmbed.setFooter(`BROKEN -> for command specific help, follow ${prefix}help with the command name! for example, ${prefix}help hello`)
         .setTimestamp();
@@ -606,7 +607,7 @@ client.on('message', function (message) {
           }
           helpEmbed.setTitle(`${groupFound.toUpperCase()} COMMANDS || *<required>, [optional]*`)
           return message.channel.send(helpEmbed);
-        } else {
+        } /*else {
           let commandFound = '';
           for (var cmd in commands) {
             if (args.join(/ +/).trim().toLowerCase === commands[cmd].name.toLowerCase()) {
@@ -619,7 +620,7 @@ client.on('message', function (message) {
               }
             }
           }
-        }
+        }*/
         message.channel.send({
           embed: {
             description: `No group or command found titled "${args.join(/ +/)}"`,

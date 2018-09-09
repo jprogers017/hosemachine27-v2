@@ -42,7 +42,7 @@
         "stage": "complete"
     },
     "cowjoke": {
-        "name": "cow joke",
+        "name": "cowjoke",
         "desc": "sends a random cow joke",
         "usage": "cowjoke",
         "type": "member",
